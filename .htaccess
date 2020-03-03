@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [OR]
+RewriteCond %{HTTP_HOST} ^www.thuneegadesigners\.com$ [NC]
+RewriteRule ^ https://thuneegadesigners.com%{REQUEST_URI} [R=301,L,NE]
+RewriteCond %{THE_REQUEST} ^[A-Z]+\ /index\.php(/[^\ ]*)?\ HTTP/ 
+RewriteRule ^index\.php(/(.*))?$ thuneegadesigners.com/$2 [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    </IfModule>
